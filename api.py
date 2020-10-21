@@ -16,7 +16,7 @@ def query_by_name(name):
     else:
         scrapeResults = {
             'research_gate' : findResearchGate(name),
-            'google' : findGoogle(name)
+            # 'google' : findGoogle(name)
         }
 
         insertedData = insertData(name, scrapeResults)
