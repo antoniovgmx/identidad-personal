@@ -7,7 +7,7 @@ import os
 
 # Ignorar los certificados:
 options = webdriver.ChromeOptions()
-option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 options.add_argument("--disable-deb-shm-usage")
 options.add_argument("--no-sandbox")
 options.add_argument('ignore-certificate-errors')
