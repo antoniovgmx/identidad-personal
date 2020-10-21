@@ -102,7 +102,7 @@ def findResearchGate(search_param):
 	try:
 		# XPath de las páginas
 		pagesxpath = '//a[@class="nova-c-button nova-c-button--align-center nova-c-button--radius-m nova-c-button--size-s nova-c-button--color-grey nova-c-button--theme-bare nova-c-button--width-full"]'
-		pagesButtons = WebDriverWait(driver, timeout = 10).until(lambda d : d.find_elements_by_xpath(pagesxpath))
+		pagesButtons = WebDriverWait(driver, timeout = 120).until(lambda d : d.find_elements_by_xpath(pagesxpath))
 
 		totalPages = int(pagesButtons[-2].text)
 
@@ -114,7 +114,7 @@ def findResearchGate(search_param):
 		# XPath de las tarjetas de artículos
 		containerxpath = '//div[@class="nova-o-stack__item"]'
 		# Encontrar todas las tarjetas de artículos dentro de la página usanndo XPath
-		articles = WebDriverWait(driver, timeout = 10).until(lambda d : d.find_elements_by_xpath(containerxpath))
+		articles = WebDriverWait(driver, timeout = 120).until(lambda d : d.find_elements_by_xpath(containerxpath))
 
 		# Ciclando cada uno de los articulos de la variable 'articles'
 		for article in articles:
