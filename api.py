@@ -86,7 +86,7 @@ def scrapeQ(name):
 @app.route('/test/scrape/<string:name>')
 def testscrape(name):
 
-    job = q.enqueue(background_task, request.args.get("n"))
+    job = q.enqueue(scrapeQ, name)
 
     return {"success" : "please check back in a minute"}
 
