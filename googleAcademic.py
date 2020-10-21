@@ -23,7 +23,7 @@ def findGoogle(search_param):
     driver.get('https://scholar.google.com/citations?view_op=search_authors&mauthors=&hl=en&oi=ao')
 
     #Esperar 10 segundos para el buscador
-    search = WebDriverWait(driver, timeout = 120).until(lambda d: d.find_element_by_class_name('gs_in_txt'))
+    search = WebDriverWait(driver, timeout = 10).until(lambda d: d.find_element_by_class_name('gs_in_txt'))
 
     #Buscar un resultado
     search.send_keys(search_param)
