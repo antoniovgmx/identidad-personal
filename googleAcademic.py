@@ -71,6 +71,8 @@ def findGoogle(search_param):
             "year" : year
         }
 
+        articlesData = []
+
         #Agregar datos a lista
         articlesData.append(data)
 
