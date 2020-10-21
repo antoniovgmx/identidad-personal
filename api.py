@@ -3,8 +3,14 @@ from researchGate import findResearchGate
 from googleAcademic import findGoogle
 from database import queryDatabase, insertData, insertTest, replaceTest
 from bson import json_util
+import redis
+from rq import Queue
 
 app = Flask(__name__)
+
+r = redis.Redis()
+q = Queue(connection=r)
+
 
 # Consulta la base de datos, de no tener datos se hace el scrape
 @app.route('/<string:name>')
@@ -68,7 +74,21 @@ def testreplaceendpoint(name,newname):
     except:
         return "Fail"
 
+def scrapeQ(name):
+    scrapeResults = {
+        'research_gate' : findResearchGate(name),
+        'google' : findGoogle(name)
+    }
 
+    insertedData = insertData(name, scrapeResults)
+
+# Testing
+@app.route('/test/scrape/<string:name>')
+def testscrape(name):
+
+    job = q.enqueue(background_task, request.args.get("n"))
+
+    return {"success" : "please check back in a minute"}
 
 
 if __name__ == "__main__":
