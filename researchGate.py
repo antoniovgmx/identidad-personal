@@ -3,18 +3,24 @@ from selenium.webdriver import Chrome #https://www.selenium.dev/documentation/en
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait #https://www.selenium.dev/documentation/en/webdriver/waits/
 from selenium.webdriver.common.by import By #https://www.selenium.dev/documentation/en/webdriver/web_element/
+import os
+
+# Ignorar los certificados:
+options = webdriver.ChromeOptions()
+option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+options.add_argument("--disable-deb-shm-usage")
+options.add_argument("--no-sandbox")
+options.add_argument('ignore-certificate-errors')
+options.add_argument('--ignore-ssl-errors')
+options.headless = True
 
 def findOnePage(search_param):
 
 
-	# Ignorar los certificados:
-	options = webdriver.ChromeOptions()
-	options.add_argument('ignore-certificate-errors')
-	options.add_argument('--ignore-ssl-errors')
-	options.headless = True
+	
 
 	# Instanciando el webdriver de Chrome (Chromium)
-	driver = Chrome(chrome_options=options)
+	driver = Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
 
 	# Navegar hacia el URL deseado con el nombre a buscar ya dentro del URI
 	driver.get('https://www.researchgate.net/search/publication?q="{}"'.format(search_param))
@@ -75,14 +81,14 @@ def findOnePage(search_param):
 def findResearchGate(search_param):
 
 
-	# Ignorar los certificados:
-	options = webdriver.ChromeOptions()
-	options.add_argument('ignore-certificate-errors')
-	options.add_argument('--ignore-ssl-errors')
-	options.headless = True
+	# # Ignorar los certificados:
+	# options = webdriver.ChromeOptions()
+	# options.add_argument('ignore-certificate-errors')
+	# options.add_argument('--ignore-ssl-errors')
+	# options.headless = True
 
 	# Instanciando el webdriver de Chrome (Chromium)
-	driver = Chrome(chrome_options=options)
+	driver = Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
 
 	# Navegar hacia el URL deseado con el nombre a buscar ya dentro del URI
 	driver.get('https://www.researchgate.net/search/publication?q="{}"'.format(search_param))

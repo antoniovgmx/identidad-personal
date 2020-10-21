@@ -8,13 +8,15 @@ import time
 def findGoogle(search_param):
     #Ignorar los certificados:
     options = webdriver.ChromeOptions()
+    option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    options.add_argument("--disable-deb-shm-usage")
+    options.add_argument("--no-sandbox")
     options.add_argument('ignore-certificate-errors')
     options.add_argument('--ignore-ssl-errors')
     options.headless = True
-    articlesData = []
 
     #Chrome drivers
-    driver = Chrome(chrome_options=options)
+    driver = Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
 
     #Navegar a google academico
     driver.get('https://scholar.google.com/citations?view_op=search_authors&mauthors=&hl=en&oi=ao')
